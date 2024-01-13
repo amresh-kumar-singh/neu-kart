@@ -1,0 +1,20 @@
+{
+  "name": "y",
+  "version": "y",
+  "description": "This is a Assignment",
+  "main": "index.js",
+  "author": "amresh",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "server",
+    "client"
+  ],
+  "scripts": {
+    "start": "concurrently \"yarn workspace server start\" \"yarn workspace client dev\"",
+    "devStart": "concurrently \"yarn workspace server devStart\" \"yarn workspace client dev\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
