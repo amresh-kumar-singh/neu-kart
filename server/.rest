@@ -1,0 +1,60 @@
+### Get products
+GET http://localhost:3000/products?page=3&limit=10 HTTP/1.1
+
+### Get single Product
+
+GET http://localhost:3000/products/amresh HTTP/1.1
+
+### Sign Up
+
+POST http://localhost:3000/signup HTTP/1.1
+content-type: application/json
+
+{
+    "name": "sample",
+    "password": "amresh"
+}
+###
+
+POST http://localhost:3000/login HTTP/1.1
+content-type: application/json
+
+{
+    "name": "sample",
+    "password": "amresh"
+}
+
+### Adding products to cart
+
+POST http://localhost:3000/cart/add HTTP/1.1
+content-type: application/json
+
+{
+    "productId": 1,
+    "quantity": 4
+}
+
+
+### Checkout
+
+POST http://localhost:3000/checkout HTTP/1.1
+content-type: application/json
+
+{
+"orderId": "order-1",
+ "discountCode":"UAHI10"
+}
+
+
+### Generate Discount code
+
+POST http://localhost:3000/admin/generateDiscountCode HTTP/1.1
+content-type: application/json
+
+
+### Get Sold Product details
+
+GET  http://localhost:3000/admin/soldProductAndDiscount HTTP/1.1
+
+
+
