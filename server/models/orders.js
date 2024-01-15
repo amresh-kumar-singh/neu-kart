@@ -8,8 +8,7 @@
 //         productId,
 //         quantity,
 //         price,
-//         discount
 //     ],
-//     address
 // }
+
 export default [];

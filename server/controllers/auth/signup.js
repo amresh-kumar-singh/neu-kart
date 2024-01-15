@@ -13,10 +13,9 @@ export default function (req, res, next) {
         );
       } else {
         const user = {
-          _id: userIdGenerator(),
+          id: userIdGenerator(),
           name,
           password,
-          address: [],
         };
         users.push(user);
         const data = structuredClone(user);

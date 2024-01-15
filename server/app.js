@@ -1,15 +1,17 @@
-import createError from "http-errors";
 import express from "express";
 import cookieParser from "cookie-parser";
 import logger from "morgan";
 import log from "#main/utils/logs/index";
 
+// Routes
 import login from "#main/routes/auth/login";
 import signup from "#main/routes/auth/signup";
 import products from "#main/routes/products/getProducts";
 import cart from "#main/routes/cart/index";
 import checkout from "#main/routes/checkout/payment";
 import admin from "#main/routes/admin/index";
+import auth from "#main/middleware/auth/index";
+import getDiscountCode from "#main/routes/users/getDiscountCode";
 
 var app = express();
 
@@ -20,10 +22,11 @@ app.use(cookieParser());
 
 app.use("/login", login);
 app.use("/signup", signup);
-app.use("/products", products);
-app.use("/cart", cart);
-app.use("/checkout", checkout);
-app.use("/admin", admin);
+app.use("/products", auth, products);
+app.use("/cart", auth, cart);
+app.use("/checkout", auth, checkout);
+app.use("/admin", auth, admin);
+app.use("/getDiscountCode", getDiscountCode);
 
 // catch 404 and forward to error handler
 app.use(function (err, req, res, next) {
@@ -36,12 +39,12 @@ app.use(function (err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};
   log(err);
-  console.log("amresh", err);
+  console.log("ERROR: - ", err);
   if (err.name === "Error") {
     res.status(400);
     res.json({
       code: 400,
-      message: err.message,
+      error: err.message,
     });
   } else {
     res.status(err.status || 500);

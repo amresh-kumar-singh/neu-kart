@@ -1,13 +1,15 @@
 import users from "#main/models/users";
-import userIdGenerator from "../../utils/userIdGenerator";
 
 export default function (req, res, next) {
   const { user } = req.body;
+  const userId = (req.headers.authorization || "").replace("Bearer ", "");
+
   try {
-    if (user) {
+    if (userId) {
       // if password matched then setting user into request
-      let user = users.find((user) => user.name === name);
+      let user = users.find((user) => user.id === userId);
       if (user) {
+        req.userId = userId;
         next();
       } else {
         throw new Error(

@@ -58,3 +58,9 @@ GET  http://localhost:3000/admin/soldProductAndDiscount HTTP/1.1
 
 
 
+### Get Discount Code
+
+GET  http://localhost:3000/getDiscountCode HTTP/1.1
+
+
+

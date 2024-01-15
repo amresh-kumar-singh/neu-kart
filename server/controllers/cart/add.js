@@ -4,19 +4,40 @@ import ordersIdGenerator from "#main/utils/idGenerator/order";
 
 export default function (req, res, next) {
   const { productId, quantity } = req.body;
+  const { userId } = req;
+
   try {
     // Find the product in the products array
     const product = products.find((p) => p.id === productId);
     if (!product) {
       throw new Error(`Product with id ${productId} not found.`);
     }
-    const { userId } = req;
 
     //   Checking if user already have items in cart
     const currentUserPreviousCartIndex = orders.findIndex(
       (order) => order.paymentStatus === "notPaid" && order.userId === userId
     );
 
+    // Checking if quantity is 0 then removing items from orders
+    if (quantity === 0 && currentUserPreviousCartIndex >= 0) {
+      // Using Slice to modify array in place
+      const indexOfItemToBeRemoved = orders[
+        currentUserPreviousCartIndex
+      ].items.findIndex((item) => item.productId === productId);
+
+      if ((indexOfItemToBeRemoved) => 0) {
+        orders[currentUserPreviousCartIndex].items.splice(
+          indexOfItemToBeRemoved,
+          1
+        );
+      }
+      const cart = orders.find(
+        (order) => order.paymentStatus === "notPaid" && order.userId === userId
+      );
+      res.status(201);
+      return res.json({ message: "Product added to cart", cart });
+    }
+    // Checking if item already exists in cart
     if (currentUserPreviousCartIndex >= 0) {
       const previousOrderInCart = orders[currentUserPreviousCartIndex];
       // checking if product already exits in user's cart
@@ -35,6 +56,7 @@ export default function (req, res, next) {
           productId,
           quantity,
           price: product.price,
+          name: product.title,
         });
       }
     } else {
@@ -43,7 +65,9 @@ export default function (req, res, next) {
         id: ordersIdGenerator(),
         paymentStatus: "notPaid",
         userId,
-        items: [{ productId, quantity, price: product.price }],
+        items: [
+          { productId, quantity, price: product.price, name: product.title },
+        ],
       };
       orders.push(order);
     }

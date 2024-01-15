@@ -6,7 +6,6 @@ import discountCodes from "#main/models/discountCodes";
 export default function (req, res, next) {
   const { orderId, discountCode } = req.body;
   const { discount = 0 } = req;
-  // TODO add check for
 
   try {
     if (orderId) {

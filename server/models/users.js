@@ -2,6 +2,10 @@
 // User Schema
 // {
 //     name,
-//     address
+//     address,
+//     password
 // }
-export default [];
+
+export default [
+  { name: "Admin", id: "admin", password: "admin", isAdmin: true },
+];

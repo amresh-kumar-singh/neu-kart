@@ -3,8 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "test": "jest",
     "start": "node ./bin/www",
-    "devStart": "cross-env DEBUG=calculator-server:* node --watch ./bin/www"
+    "devStart": "cross-env DEBUG=server:* node --watch ./bin/www"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",

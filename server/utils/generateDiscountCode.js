@@ -1,3 +1,5 @@
+import discountPercent from "#main/info/discountPercent";
+
 export default function () {
   const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   let code = "";
@@ -7,5 +9,5 @@ export default function () {
     code += letters.charAt(index);
   }
 
-  return code + 10;
+  return code + discountPercent;
 }
