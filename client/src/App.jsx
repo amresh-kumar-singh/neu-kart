@@ -1,10 +1,9 @@
 import { React } from "react";
 import "@/App.css";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Login from "@/pages/auth/Login";
 import Signup from "@/pages/auth/Signup";
 import ProtectedComp from "@/components/auth/ProtectedComp";
-import SingleProduct from "@/components/products/SingleProduct";
 import Payment from "@/pages/checkout/Payment";
 import NotFound from "@/components/NotFound";
 import Unauthorized from "./components/Unauthorized";
@@ -43,6 +42,9 @@ function App() {
         <Route element={<ProtectedComp allowedRoles="admin" />}>
           <Route path="/details" element={<SoldProducts />} />
         </Route>
+
+        {/* Home page will redirect to login */}
+        <Route path="/" element={<Navigate to="/login" />} />
 
         {/* 404 page */}
         <Route path="*" element={<NotFound />} />

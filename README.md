@@ -8,15 +8,19 @@
 - [Usage](#usage)
 - [Configuration](#configuration)
 - [License](#license)
-- [Changelog](#changelog)
-- [Credits](#credits)
 - [Documentation](#documentation)
-- [Testing](#testing)
-- [Support](#support)
 
 ## Installation
 
-Use yarn install on root directory to install client and server packages.
+Clone the Git repository, navigate to the root directory, install dependencies, and initiate the application by running the appropriate start command.
+
+```bash
+git clone https://github.com/amresh-kumar-singh/neu-kart
+```
+
+```bash
+cd neu-kart
+```
 
 ```bash
 yarn install
@@ -24,7 +28,13 @@ yarn install
 
 ## Usage
 
+- Start the application: `yarn start` or `yarn devStart`
+- Access the app in your browser at [http://localhost:5173/](http://localhost:5173/)
+
 ## Configuration
+
+- An administrator user is automatically generated upon installation. To access the administrative functionalities, log in using the username "Admin" and password "admin".
+- The default configuration for discounts is set to apply to every 2nd order. This setting can be found in the file located at /server/info/discountAfterNOrder.js.
 
 ## License
 
@@ -32,6 +42,4 @@ This project is licensed under the MIT.
 
 ## Documentation
 
-## Credits
-
-## Testing
+All API endpoints, along with sample request, are documented in the REST client file located at /server/.rest."
